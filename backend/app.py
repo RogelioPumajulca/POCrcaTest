@@ -4,6 +4,10 @@ from module_1 import Module1
 from module_2 import Module2
 import queue
 import time
+from flask import Flask, jsonify
+from flask_cors import CORS
+from neo4j import GraphDatabase
+
 
 app = Flask(__name__,
             static_folder='../frontend/static',
@@ -13,11 +17,35 @@ app.config.from_object(__name__)
 
 CORS(app, resources={r"/*":{'origins':"*"}})
 
+# Neo4j connection
+uri = "neo4j://localhost:7687"
+user = "neo4j"
+password = "S1st3m@s"
+driver = GraphDatabase.driver(uri, auth=(user, password))
+
+def get_data():
+    with driver.session() as session:
+        result = session.run("MATCH (n) RETURN n LIMIT 25")
+        return [record["n"]._properties for record in result]
+
+@app.route('/data')
+def data():
+    try:
+        data = get_data()
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 module1 = Module1()
 module1.start()
 
 module2 = Module2()
 module2.start()
+
 
 
 
