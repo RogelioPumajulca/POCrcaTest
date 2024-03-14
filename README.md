@@ -6,7 +6,7 @@ RCA Module
  Rogelio Pumajulca
 
 ## Directory Structure
-- `frontend`: Vue.js frontend code, static files
+- `frontend`: Vue.js frontend code, static files <-- not anymore :b
 - `backend`: Python Flask backend
 
 
@@ -18,12 +18,12 @@ cd backend
 python app.py
 ```
 
-Go to (http://localhost:8000)[http://localhost:8000]
+Go to (http://localhost:8000)[http://localhost:8000]  <--- not anymore
 
 ### Prerequisites
 For backend:
 ```
-pip install -r ./backend/requirements.txt
+pip install -r ./backend/requirements.txt  <-- i have updated it with neo
 ```
 
 
@@ -36,7 +36,7 @@ The backend is Flask app that both serves the static files and implements the AP
 
 PROJECT UPDATE - LEER AQUÍ :b
 I have installed vue (+npm) + neo4j driver 
-new port --> 127.0.0.1:5000/data
+new port --> http://127.0.0.1:5000/data
 
 
 
